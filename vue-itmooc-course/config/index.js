@@ -10,11 +10,24 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api/course': {
+        target: 'http://127.0.0.1:31200',
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
+      '/api/sys': {//系统管理
+        target: 'http://127.0.0.1:31100',
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 10001, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 11100, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
