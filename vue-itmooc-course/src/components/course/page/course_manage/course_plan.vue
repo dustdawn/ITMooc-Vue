@@ -10,7 +10,7 @@
       :render-content="renderContent">
     </el-tree>
 
-    <el-dialog title="添加课程计划" :visible.sync="teachplayFormVisible" >
+    <el-dialog title="添加课程计划" :visible.sync="teachplayFormVisible" @close="closeForm()">
 
       <el-form ref="teachplanForm"  :model="teachplanActive" label-width="140px" style="width:600px;" :rules="teachplanRules" >
         <el-form-item label="上级结点" >
@@ -113,12 +113,12 @@
   import * as courseApi from '../../api/course';
   import utilApi from '../../../../common/utils';
   import * as systemApi from '../../../../base/api/system';
-  // import mediaList from '@/module/media/page/media_list.vue';
+  import mediaList from '@/components/media/page/media_list.vue';
 
   export default {
-    /*components:{
+    components:{
       mediaList
-    },*/
+    },
     data() {
       return {
         mediaFormVisible:false,
@@ -238,6 +238,10 @@
       //重置表单
       resetForm(){
         this.teachplanActive = {}
+      },
+      //监听添加表单关闭事件
+      closeForm(){
+        this.resetForm()
       },
 
       append(data) {

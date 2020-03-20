@@ -13,6 +13,9 @@ import course_plan from '../components/course/page/course_manage/course_plan.vue
 import course_pub from '../components/course/page/course_manage/course_pub.vue'
 import course_summary from '../components/course/page/course_manage/course_summary.vue'
 import course_teacher from '../components/course/page/course_manage/course_teacher.vue'
+
+import upload from '../components/media/page/upload.vue'
+import media_list from '../components/media/page/media_list.vue'
 Vue.use(Router)
 
 // export default new VueRouter({
@@ -36,7 +39,9 @@ const router = new Router({
             { path: '/course/manage/teacher/:courseid', name: '教师信息',component: course_teacher,hidden: false},
             { path: '/course/manage/pub/:courseid', name: '发布课程',component: course_pub,hidden: false},
             { path: '/course/manage/summary/:courseid', name: '课程首页',component: course_summary,hidden: false }
-          ]}
+          ]},
+        { path: '/upload', name: '上传文件',component: upload,hidden: false },
+        { path: '/media_list', name: '我的媒资',component: media_list,hidden: false }
       ]
     }
   ]

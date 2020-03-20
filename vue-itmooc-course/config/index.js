@@ -11,18 +11,24 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api/course': {
-        target: 'http://127.0.0.1:31200',
-        pathRewrite: {
-          '^/api': ''
-        }
-      },
       '/api/sys': {//系统管理
         target: 'http://127.0.0.1:31100',
         pathRewrite: {
           '^/api': ''
         }
-      }
+      },
+      '/api/course': {//课程管理
+        target: 'http://127.0.0.1:31200',
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
+      '/api/media': {//媒资管理
+        target: 'http://127.0.0.1:31401',
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
     },
 
     // Various Dev Server settings
