@@ -1,5 +1,13 @@
 <template>
   <div>
+
+    <h3>我的媒资</h3>
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item>媒资管理</el-breadcrumb-item>
+      <el-breadcrumb-item>我的媒资</el-breadcrumb-item>
+
+    </el-breadcrumb>
+
     <!--查询表单-->
     <el-form :model="params">
       标签：

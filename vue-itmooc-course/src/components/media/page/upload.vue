@@ -1,5 +1,13 @@
 <template>
-  <div><br/>
+  <div>
+    <h3>上传文件</h3>
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item>媒资管理</el-breadcrumb-item>
+      <el-breadcrumb-item>上传文件</el-breadcrumb-item>
+
+    </el-breadcrumb>
+
+    <br/>
     操作步骤：<br/>
     1、点击“选择文件”，选择要上传的文件<br/>
     2、点击“开始上传”，开始上传文件<br/>
