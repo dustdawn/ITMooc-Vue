@@ -9,9 +9,8 @@
       </el-form-item>
       <el-form-item label="课程分类" prop="categoryActive">
         <el-cascader
-          expand-trigger="hover"
-          :options="categoryList"
           v-model="categoryActive"
+          :options="categoryList"
           :props="props">
         </el-cascader>
       </el-form-item>
@@ -42,13 +41,13 @@
       return {
         dotype:'',
         courseid:'',
-        studymodelList:[],
         gradeList:[],
         editLoading: false,
         props: {
           value: 'id',
-          label:'name',
-          children:'children'
+          label:'label',
+          children:'children',
+          expandTrigger: 'hover'
         },
         categoryList: [],
         categoryActive:[],
@@ -57,7 +56,6 @@
           name: '',
           users: '',
           grade:'',
-          studymodel:'',
           mt:'',
           st:'',
           description: ''
@@ -71,9 +69,6 @@
           ],
           grade: [
             {required: true, message: '请选择课程等级', trigger: 'blur'}
-          ],
-          studymodel: [
-            {required: true, message: '请选择学习模式', trigger: 'blur'}
           ]
 
         }
@@ -111,29 +106,34 @@
         });
       }
     },
-    mounted(){
-
-    },
     created(){
       //查询数据字典字典
       systemApi.sys_getDictionary('200').then((res) => {
         this.gradeList = res.dvalue;
       });
-      //取课程分类
-      courseApi.category_findlist({}).then((res) => {
-        this.categoryList = res.children;
-      });
+
+
       //查询课程信息
       //课程id
       this.courseid = this.$route.params.courseid;
       courseApi.getCourseBaseById(this.courseid).then((res) => {
-
         this.courseForm = res;
         //课程分类显示，需要两级分类
         this.categoryActive.push(this.courseForm.mt);
         this.categoryActive.push(this.courseForm.st);
+
+        //取课程分类
+        courseApi.category_findlist({}).then((res) => {
+          this.categoryList = res.children;
+        });
+
       });
-    }
+
+    },
+    mounted(){
+
+
+    },
   }
 </script>
 

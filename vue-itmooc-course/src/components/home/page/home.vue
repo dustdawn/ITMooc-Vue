@@ -81,7 +81,6 @@ export default {
   },
   // 声明周期函数（钩子）
   created() {
-    console.log('created......')
     this.funcApi()
   },
   methods: {
@@ -90,7 +89,6 @@ export default {
       this.$router.push('/login')
     },
     funcApi() {
-      console.log('调取后台接口')
       this.menulist = [
         {
           id: 100,

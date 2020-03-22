@@ -12,7 +12,7 @@
         <!--新增课程-->
         <el-col :span="8"  :offset=2 >
           <el-card :body-style="{ padding: '10px' }">
-            <img src="/static/images/add.png" class="image" height="200px">
+            <img src="/static/images/add.png" class="image" height="150px">
             <div style="padding: 10px;">
               <span>课程名称</span>
               <div class="bottom clearfix">
@@ -27,7 +27,7 @@
 
         <el-col :span="8" v-for="(course, index) in courses" :key="course.id" :offset="index > 0 ? 2 : 2">
           <el-card :body-style="{ padding: '10px' }">
-            <img :src="course.pic!=null?imgUrl+course.pic:'/static/images/none.png'" class="image" height="200px">
+            <img :src="course.pic!=null?imgUrl+course.pic:'/static/images/none.png'" class="image" height="150px">
             <div style="padding: 10px;">
               <span>{{course.name}}</span>
               <div class="bottom clearfix">

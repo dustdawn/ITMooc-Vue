@@ -29,6 +29,12 @@ module.exports = {
           '^/api': ''
         }
       },
+      '/api/filesystem': {//文件系统管理
+        target: 'http://127.0.0.1:31500',
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
     },
 
     // Various Dev Server settings

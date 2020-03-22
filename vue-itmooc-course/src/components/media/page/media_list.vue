@@ -8,6 +8,8 @@
 
     </el-breadcrumb>
 
+
+
     <!--查询表单-->
     <el-form :model="params">
       标签：
@@ -31,7 +33,7 @@
       </router-link>
     </el-form>
     <!--列表-->
-    <el-table :data="list" highlight-current-row v-loading="listLoading" style="width: 100%;">
+    <el-table :data="list" highlight-current-row v-loading="listLoading" style="width: 100%;" border>
       <el-table-column type="index" width="30">
       </el-table-column>
       <el-table-column prop="fileOriginalName" label="原始文件名称" width="220">
@@ -46,9 +48,9 @@
       </el-table-column>
       <el-table-column prop="processStatus" label="处理状态" width="100" :formatter="formatProcessStatus">
       </el-table-column>
-      <el-table-column prop="uploadTime" label="创建时间" width="110" :formatter="formatCreatetime">
+      <el-table-column prop="uploadTime" label="创建时间" width="120" :formatter="formatCreatetime">
       </el-table-column>
-      <el-table-column label="开始处理" width="100" v-if="ischoose != true">
+      <el-table-column label="开始处理" width="110" v-if="ischoose != true">
         <template slot-scope="scope">
           <el-button
             size="small" type="primary" plain @click="process(scope.row.fileId)">开始处理
@@ -70,6 +72,7 @@
                      style="float:right;">
       </el-pagination>
     </el-col>
+
   </div>
 </template>
 <script>
@@ -151,10 +154,11 @@
     created(){
       //默认第一页
       this.params.page = Number.parseInt(this.$route.query.page||1);
-    },
-    mounted() {
       //默认查询页面
       this.query()
+    },
+    mounted() {
+
       //初始化处理状态
       this.processStatusList = [
         {
