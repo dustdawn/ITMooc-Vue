@@ -44,7 +44,7 @@
       </el-table-column>
       <el-table-column prop="tag" label="标签" width="100">
       </el-table-column>
-      <el-table-column prop="fileSize" label="文件大小" width="120">
+      <el-table-column prop="fileSize" label="文件大小" width="100">
       </el-table-column>
       <el-table-column prop="processStatus" label="处理状态" width="100" :formatter="formatProcessStatus">
       </el-table-column>
@@ -148,6 +148,12 @@
           console.log(res)
           this.total = res.queryResult.total
           this.list = res.queryResult.list
+
+
+          for (let i = 0; i < this.total; i++) {
+            let size = parseInt(this.list[i].fileSize/1024/1024)
+            this.list[i].fileSize = size + "MB"
+          }
         })
       }
     },
