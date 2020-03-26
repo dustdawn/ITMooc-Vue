@@ -67,8 +67,8 @@
     <!--分页-->
     <el-col :span="24" class="toolbar">
 
-      <el-pagination background layout="prev, pager, next" @current-change="changePage" :page-size="this.params.size"
-                     :total="total" :current-page="this.params.page"
+      <el-pagination background layout="prev, pager, next" @current-change="changePage" :page-size="this.size"
+                     :total="total" :current-page="this.page"
                      style="float:right;">
       </el-pagination>
     </el-col>
@@ -82,9 +82,9 @@
     props: ['ischoose'],
     data(){
       return {
+        page:1,//页码
+        size:2,//每页显示个数
         params:{
-          page:1,//页码
-          size:10,//每页显示个数
           tag:'',//标签
           fileOriginalName:'',//文件原始名称
           processStatus:''//处理状态
@@ -129,37 +129,39 @@
         this.$emit('choosemedia',mediaFile.fileId,mediaFile.fileOriginalName,mediaFile.fileUrl);
       },
       changePage(page){
-        this.params.page = page;
+        this.page = page;
         this.query()
       },
       process (id) {
 //        console.log(id)
         mediaApi.media_process(id).then((res)=>{
-          console.log(res)
           if(res.success){
             this.$message.success('开始处理，请稍后查看处理结果');
           }else{
-            this.$message.error('操作失败，请刷新页面重试');
+            this.$message.error(res.message);
           }
         })
       },
       query(){
-        mediaApi.media_list(this.params.page,this.params.size,this.params).then((res)=>{
+        mediaApi.media_list(this.page,this.size,this.params).then((res)=>{
           console.log(res)
           this.total = res.queryResult.total
           this.list = res.queryResult.list
 
 
           for (let i = 0; i < this.total; i++) {
-            let size = parseInt(this.list[i].fileSize/1024/1024)
-            this.list[i].fileSize = size + "MB"
+            if (this.list[i]) {
+              let size = parseInt(this.list[i].fileSize/1024/1024);
+              this.list[i].fileSize = size + "MB"
+            }
           }
         })
       }
     },
     created(){
       //默认第一页
-      this.params.page = Number.parseInt(this.$route.query.page||1);
+      console.log(this.$route.query.page)
+      this.page = Number.parseInt(this.$route.query.page||1);
       //默认查询页面
       this.query()
     },

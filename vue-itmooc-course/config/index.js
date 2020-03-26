@@ -11,7 +11,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api/sys': {//系统管理
+      /*'/api/sys': {//系统管理
         target: 'http://127.0.0.1:31100',
         pathRewrite: {
           '^/api': ''
@@ -34,7 +34,7 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
-      },
+      },*/
     },
 
     // Various Dev Server settings
