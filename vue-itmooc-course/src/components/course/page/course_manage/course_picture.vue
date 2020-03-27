@@ -116,6 +116,7 @@
       this.courseid = this.$route.params.courseid;
       //查询课程
       courseApi.findCoursePicList(this.courseid).then(res=>{
+        console.log("pic",res)
         if(res && res.pic){
           let imgUrl = this.imgUrl+res.pic;
           //将图片地址设置到
