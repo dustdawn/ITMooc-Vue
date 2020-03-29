@@ -38,13 +38,15 @@ export const page_del = id => {
   return http.requestDelete(apiUrl+'/cms/page/del/'+id)
 }
 /*生成静态文件 */
-export const page_generateHtml= id => {
-  return http.requestPost(apiUrl+'/cms/page/generateHtml/'+id)
+export const page_generateHtml= (id, params) => {
+  //let querys = querystring.stringify(params)
+  //console.log(querys)
+  return http.requestPost(apiUrl+'/cms/page/generateHtml/'+id, params)
 }
 /*取出静态文件 */
-export const page_getHtml= id => {
+/*export const page_getHtml= id => {
   return http.requestQuickGet(apiUrl+'/cms/page/getHtml/'+id)
-}
+}*/
 /*发布页面*/
 export const page_postPage= id => {
   return http.requestPost(apiUrl+'/cms/page/postPage/'+id)

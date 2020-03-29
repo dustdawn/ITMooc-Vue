@@ -27,12 +27,12 @@
       </router-link>
     </el-form>
     <!--列表-->
-    <el-table :data="list" highlight-current-row v-loading="listLoading" style="width: 100%;" border>
+    <el-table :data="list"  highlight-current-row v-loading="listLoading" style="width: 100%;" border>
       <el-table-column type="index" width="50">
       </el-table-column>
       <el-table-column prop="pageName" label="页面名称" width="200">
       </el-table-column>
-      <el-table-column prop="pageAliase" label="别名" width="200">
+      <el-table-column prop="pageAliase" label="别名" width="125">
       </el-table-column>
 
       <el-table-column prop="pageWebPath" label="访问路径" width="120">
@@ -42,7 +42,6 @@
       <el-table-column prop="pageCreateTime" label="创建时间" width="180" :formatter="formatCreatetime">
       </el-table-column>
       <el-table-column prop="pageStatus" label="是否静态化" :formatter="formatStatus" width="100">
-
       </el-table-column>
       <el-table-column label="编辑" width="80">
         <!--插槽模板可取出其他数据，scope为自定义的名称，row为循环遍历的实体-->
@@ -64,20 +63,29 @@
           </el-button>
         </template>
       </el-table-column>
-      <el-table-column label="静态化" width="80">
+      <el-table-column label="静态化" width="90">
         <template slot-scope="scope">
           <el-button
             size="small" type="primary" plain @click="generateHtml(scope.row.pageId)">静态化
           </el-button>
         </template>
       </el-table-column>
-      <el-table-column label="发布" width="85">
+      <el-table-column label="发布" width="150" align="center">
         <template slot-scope="scope">
-          <el-button
-            size="small" type="primary" plain @click="postPage(scope.row.pageId)">发布
-          </el-button>
+          <el-row>
+            <el-button
+              size="small" type="primary" plain @click="postPage(scope.row.pageId)">
+              发布
+            </el-button>
+            <a :href="scope.row.pubUrl" target="_blank" v-if="scope.row.pubUrl !== null">查看发布</a>
+          </el-row>
+
         </template>
+
+
+
       </el-table-column>
+
     </el-table>
     <!--分页-->
     <el-col :span="24" class="toolbar">
@@ -104,7 +112,6 @@
         listLoading:false,
         list:[],
         total:0,
-
         siteList:[]//站点列表
       }
     },
@@ -121,6 +128,8 @@
           return "未静态化";
         }else if (row.pageStatus == '100002') {
           return "已静态化";
+        }else if (row.pageStatus == '100003') {
+          return "已发布";
         }
       },
 
@@ -140,6 +149,7 @@
               console.log('发布页面id='+id);
               this.listLoading = false;
               this.$message.success('发布成功，请稍后查看结果');
+              this.query()
             }else{
               this.$message.error('发布失败');
             }

@@ -6,6 +6,7 @@ import Welcome from '@/components/home/page/welcome'
 import page_list from '@/components/cms/page/page_list'
 import page_add from '@/components/cms/page/page_add'
 import page_edit from '@/components/cms/page/page_edit'
+import page_html from '@/components/cms/page/page_html'
 
 Vue.use(Router)
 
@@ -29,7 +30,9 @@ const router = new Router({
       children: [
         { path: '/welcome', component: Welcome },
         { path: '/cms/page/list', name: '页面列表',component: page_list,hidden: false },
-        { path: '/cms/page/add', name: '添加页面', component: page_add, hidden: true}
+        { path: '/cms/page/add', name: '添加页面', component: page_add, hidden: true},
+        { path: '/cms/page/edit/:pageId', name:'修改页面',component: page_edit,hidden:true},
+        { path: '/cms/page/html/:pageId', name:'生成html',component: page_html,hidden:true}
       ]
     }
   ]
