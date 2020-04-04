@@ -1,0 +1,29 @@
+{
+  "name": "nuxt-itmooc-portal",
+  "version": "1.0.0",
+  "description": "My excellent Nuxt.js project",
+  "author": "罗斌",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "Base64": "^1.0.1",
+    "element-ui": "^2.0.10",
+    "jwt-decode": "^2.2.0",
+    "md5": "^2.2.1",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+  },
+  "config": {
+    "nuxt": {
+      "host": "127.0.0.1",
+      "port": "11300"
+    }
+  }
+}
