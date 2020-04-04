@@ -29,7 +29,7 @@
               状态：已发布<br/><br/>
               <el-button type="primary"  @click.native="publish" >修改发布</el-button>
               <br/><br/>
-              <span><a :href="'http://www.itmooc.com/course/detail/'+this.courseid+'.html'" target="_blank">点我查看课程详情页面 </a> </span>
+              <span><a :href="this.pubUrl+this.courseid+'.html'" target="_blank">点我查看课程详情页面 </a> </span>
             </div>
           </div>
         </el-card>
@@ -49,7 +49,8 @@
         dotype: '',
         courseid: '',
         course: {"id": "", "name": "", "status": ""},
-        previewurl: ''
+        previewurl: '',
+        pubUrl: sysConfig.pubUrl
       }
     },
     methods:{
