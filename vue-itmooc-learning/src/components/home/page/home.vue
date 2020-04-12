@@ -1,7 +1,7 @@
 <template>
 <div>
   <p-head></p-head>
-  <div class="personal-header" style="background-image: url(static/images/header_bg.jpg);"></div>
+
   <!-- 页面 -->
   <div class="container">
     <div class="personal-nav pull-left">
@@ -49,35 +49,6 @@
       //跳转到我的课程
       //this.$router.push({ path: '/course'})
 
-      /*$(function() {
-        $('.aft').hover(function() {
-          if (!$(this).hasClass('ac')) {
-            $(this).find('ul').html($('#listcont').html())
-            $(this).addClass('ac')
-          } else {
-            $(this).find('ul').text('')
-            $(this).removeClass('ac')
-          }
-        })
-      })*/
-
-
-      /*$(function() {
-        $(window).scroll(function() {
-          /!*console.log($(this)[0].scrollY)*!/
-          if ($(this)[0].scrollY > 235) {
-            $('.personal-nav').css({
-              'position': 'fixed',
-              'top': 10
-            });
-          } else if ($(this)[0].scrollY <= 155) {
-            $('.personal-nav').css({
-              'position': 'relative',
-              'top': -70
-            });
-          };
-        })
-      })*/
     }
   }
 </script>
