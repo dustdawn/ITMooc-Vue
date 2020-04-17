@@ -2,10 +2,7 @@ import http from '@/base/api/public'
 import querystring from 'querystring'
 let sysConfig = require('@/../config/sysConfig')
 let apiUrl = sysConfig.xcApiUrlPre;
-//测试
-export const page_test= id => {
-  return http.requestQuickGet(apiUrl+'/cms/user/get/'+id)
-}
+
 /*页面列表*/
 export const page_list = (page,size,params) => {
   //params为json格式:查询条件站点id和别名

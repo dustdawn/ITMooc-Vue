@@ -72,9 +72,10 @@ export default {
     return {
       menulist: [],
       iconsObj: {
-        // '100': 'iconfont icon-user',
+        '100': 'iconfont icon-user',
         '101': 'iconfont icon-tijikongjian',
-        '100': 'iconfont icon-tijikongjian'
+        '102': 'el-icon-office-building',
+        '103': 'el-icon-reading'
       },
       isCollapse: false
     }
@@ -92,14 +93,26 @@ export default {
       this.menulist = [
         {
           id: 100,
-          authName: 'CMS',
-          children: [
-            {id: 1001, authName: '页面管理', path: 'cms/page/list'}]
+          authName: '用户管理',
+          children: [{ id: 1001, authName: '用户列表', path: 'user/page/list' }]
         },
         {
           id: 101,
           authName: '权限管理',
-          children: [{ id: 1011, authName: '上传文件', path: 'upload' }, { id: 1012, authName: '我的媒资', path: 'media_list' }]
+          children: [
+            { id: 1011, authName: '角色列表', path: 'permission/page/role' },
+            { id: 1012, authName: '权限列表', path: 'permission/page/menu' }]
+        },
+        {
+          id: 102,
+          authName: '组织管理',
+          children: [{ id: 1021, authName: '组织列表', path: 'office/page/list' }]
+        },
+        {
+          id: 103,
+          authName: 'CMS',
+          children: [
+            {id: 10031, authName: '页面管理', path: 'cms/page/list'}]
         }
       ]
     },

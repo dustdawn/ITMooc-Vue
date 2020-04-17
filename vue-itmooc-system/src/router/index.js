@@ -3,10 +3,20 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Home from '@/components/home/page/home'
 import Welcome from '@/components/home/page/welcome'
+
+import user_list from '@/components/user/page/user_list'
+
+import role_list from '@/components/permission/page/role_list'
+import menu_list from '@/components/permission/page/menu_list'
+
+import office_list from '@/components/office/page/office_list'
+
 import page_list from '@/components/cms/page/page_list'
 import page_add from '@/components/cms/page/page_add'
 import page_edit from '@/components/cms/page/page_edit'
 import page_html from '@/components/cms/page/page_html'
+
+
 
 Vue.use(Router)
 
@@ -21,14 +31,19 @@ Router.prototype.push = function push(location) {
 // export default new VueRouter({
 const router = new Router({
   routes: [
-    { path: '/', redirect: '/cms' },
+    { path: '/', redirect: '/index' },
     {
-      path: '/cms',
+      path: '/index',
       component: Home,
       // 重定向到子路由，如果直接匹配子路由则加载父路由
       redirect: '/welcome',
       children: [
         { path: '/welcome', component: Welcome },
+        { path: '/user/page/list', name: '用户列表',component: user_list,hidden: false },
+        { path: '/permission/page/role', name: '角色列表',component: role_list,hidden: false },
+        { path: '/permission/page/menu', name: '权限列表',component: menu_list,hidden: false },
+        { path: '/office/page/list', name: '组织列表',component: office_list,hidden: false },
+
         { path: '/cms/page/list', name: '页面列表',component: page_list,hidden: false },
         { path: '/cms/page/add', name: '添加页面', component: page_add, hidden: true},
         { path: '/cms/page/edit/:pageId', name:'修改页面',component: page_edit,hidden:true},

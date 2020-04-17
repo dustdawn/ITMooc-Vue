@@ -3,7 +3,8 @@
 
     <h3>页面列表</h3>
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/cms' }">CMS</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item>CMS</el-breadcrumb-item>
       <el-breadcrumb-item>页面列表</el-breadcrumb-item>
     </el-breadcrumb>
 

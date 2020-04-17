@@ -3,7 +3,8 @@
 
     <h3>添加页面</h3>
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/cms' }">CMS</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item>CMS</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/cms/page/list' }">页面列表</el-breadcrumb-item>
       <el-breadcrumb-item>添加页面</el-breadcrumb-item>
     </el-breadcrumb>
