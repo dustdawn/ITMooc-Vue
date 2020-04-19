@@ -40,7 +40,6 @@
           <el-table-column label="姓名" prop="name"></el-table-column>
           <el-table-column label="邮箱" prop="email"></el-table-column>
           <el-table-column label="电话" prop="mobile"></el-table-column>
-          <el-table-column label="角色" prop="utype"></el-table-column>
           <el-table-column label="状态">
             <template slot-scope="scope">
               <el-switch v-model="scope.row.status == 1 ? true: false" @change="userStateChanged(scope.row)">
@@ -86,6 +85,17 @@
           <el-form-item label="手机" prop="mobile">
             <el-input v-model="addForm.mobile"></el-input>
           </el-form-item>
+          <el-form-item label="所属组织" prop="office">
+            <el-select v-model="addForm.officeId" placeholder="请选择">
+              <el-option
+                v-for="item in officeList"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id">
+              </el-option>
+            </el-select>
+          </el-form-item>
+
         </el-form>
         <!-- 底部区域 -->
         <span slot="footer" class="dialog-footer">
@@ -108,6 +118,16 @@
           </el-form-item>
           <el-form-item label="手机" prop="mobile">
             <el-input v-model="editForm.mobile"></el-input>
+          </el-form-item>
+          <el-form-item label="所属组织" prop="office">
+            <el-select v-model="editForm.officeId" placeholder="请选择">
+              <el-option
+                v-for="item in officeList"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id">
+              </el-option>
+            </el-select>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
@@ -177,6 +197,7 @@
               size: 5
             },
             userList: [],
+            officeList: [],
             total: 0,
             // 控制添加用户对话框的显示与隐藏
             addDialogVisible: false,
@@ -186,7 +207,8 @@
               name: '',
               password: '',
               email: '',
-              mobile: ''
+              mobile: '',
+              officeId:''
             },
             // 添加表单的验证规则对象
             addFormRules: {
@@ -244,12 +266,18 @@
           }
         },
         methods: {
+
+
           getUserList() {
             userApi.user_list(this.params.page, this.params.size, this.params).then(res => {
               console.log(res);
-              this.total = res.queryResult.total
-              this.userList = res.queryResult.list
-
+              if (!res.success) {
+                return this.$message.error("获取用户数据失败！" + res.message);
+              }
+              if (res.queryResult) {
+                this.total = res.queryResult.total;
+                this.userList = res.queryResult.list
+              }
             })
           },
           // 监听 pagesize 改变的事件
@@ -407,6 +435,13 @@
           }
         },
         created() {
+
+          userApi.office_list().then(res => {
+            if (!res) {
+              return this.$message.error("获取组织信息失败！" + res.message);
+            }
+            this.officeList = res;
+          })
           this.getUserList();
         }
     }

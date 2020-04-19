@@ -1,7 +1,7 @@
 import http from '@/base/api/public'
 import querystring from 'querystring'
 let sysConfig = require('@/../config/sysConfig')
-let apiUrl = sysConfig.xcApiUrlPre;
+let apiUrl = sysConfig.ApiUrlPre;
 
 // 获取菜单列表
 export const role_list = () => {

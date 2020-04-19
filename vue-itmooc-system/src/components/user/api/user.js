@@ -1,7 +1,7 @@
 import http from '@/base/api/public'
 import querystring from 'querystring'
 let sysConfig = require('@/../config/sysConfig')
-let apiUrl = sysConfig.xcApiUrlPre;
+let apiUrl = sysConfig.ApiUrlPre;
 
 // 获取用户列表
 export const user_list = (page,size,params) => {
@@ -40,3 +40,9 @@ export const user_roles = id => {
 export const assign_roles = (userId, roleIds) => {
   return http.requestPut(apiUrl+'/ucenter/user/assign/'+ userId + '/' + roleIds)
 }
+
+// 组织列表
+export const office_list = () => {
+  return http.requestGet(apiUrl+'/ucenter/office/list')
+}
+
