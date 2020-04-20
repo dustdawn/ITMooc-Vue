@@ -34,8 +34,8 @@ let openAuthorize = sysConfig.openAuthorize
 
 router.beforeEach((to, from, next) => {
   if(openAuthenticate){
-    console.log("to",to)
-    console.log("from",from)
+    //console.log("to",to)
+    //console.log("from",from)
     //***********身份校验***************
     let activeUser
     let uid
