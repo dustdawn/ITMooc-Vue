@@ -41,11 +41,9 @@ export default {
       return ;
     }
     let activeUser={}
-    //console.log(jwtDecodeVal)
-    activeUser.utype = jwtDecodeVal.utype || '';
+    console.log(jwtDecodeVal)
     activeUser.username = jwtDecodeVal.name || '';
-    activeUser.userpic = jwtDecodeVal.userpic || '';
-    activeUser.userid = jwtDecodeVal.userid || '';
+    activeUser.userId = jwtDecodeVal.id || '';
     activeUser.authorities = jwtDecodeVal.authorities || '';
     activeUser.uid = jwtDecodeVal.jti || '';
     activeUser.jwt = jwt;

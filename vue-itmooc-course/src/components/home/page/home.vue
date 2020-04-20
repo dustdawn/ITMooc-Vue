@@ -6,7 +6,12 @@
         <img src="../../../assets/logo.png" alt="" />
         <span>教学管理中心</span>
       </div>
-      <el-button type="info" @click="logout">退出</el-button>
+      <div class="usermenu" >
+        欢迎您：{{user.username}}
+        <a href="http://www.itmooc.com" target="_blank"><i class="el-icon-s-home"></i>首页</a>
+        <a href="javascript:;" @click="logout" :loading="editLoading"><i class="el-icon-close"></i>退出</a>
+      </div>
+
     </el-header>
     <!-- 主体区 -->
     <el-container>
@@ -67,9 +72,16 @@
   </el-container>
 </template>
 <script>
+  import utilApi from '../../../common/utils'
 export default {
   data() {
     return {
+      user:{
+        userid:'',
+        username: '',
+      },
+      logined:false,
+      editLoading:false,
       menulist: [],
       iconsObj: {
         // '100': 'iconfont icon-user',
@@ -81,12 +93,27 @@ export default {
   },
   // 声明周期函数（钩子）
   created() {
-    this.funcApi()
+    this.funcApi();
+    this.refresh_user()
   },
   methods: {
-    logout() {
-      window.sessionStorage.clear()
-      this.$router.push('/login')
+    // 退出登录
+    logout: function () {
+      this.$confirm('确认退出吗?', '提示', {
+      }).then(() => {
+        //跳转到统一登陆
+        window.location = "http://ucenter.itmooc.com/#/logout"
+      }).catch(() => {
+
+      });
+    },
+    refresh_user:function(){
+      let activeUser= utilApi.getActiveUser();
+
+      if(activeUser){
+        this.logined = true
+        this.user = activeUser;
+      }
     },
     funcApi() {
       this.menulist = [
@@ -163,5 +190,17 @@ export default {
   letter-spacing: 0.2em;
   // 鼠标变手
   cursor: pointer;
+}
+
+.usermenu {
+  float: right;
+  padding: 0 2em;
+  color:#fff;
+  font-size: 15px;
+}
+.usermenu a {
+  text-decoration: none;
+  margin: 0 0.2em 0 1em;
+  color:inherit;
 }
 </style>

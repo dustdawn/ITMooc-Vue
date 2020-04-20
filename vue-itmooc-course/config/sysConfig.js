@@ -6,7 +6,7 @@ var sysConfig = {
     videoUrl:'http://video.itmooc.com',
     pubUrl:'http://www.itmooc.com/course/detail/',
   //开启认证
-    openAuthenticate:false,
+    openAuthenticate:true,
     openAuthorize:false
 }
 

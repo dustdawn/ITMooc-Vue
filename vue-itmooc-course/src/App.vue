@@ -7,6 +7,9 @@
 </template>
 
 <script>
+  import jwtDecode from 'jwt-decode'
+  import Base64 from 'js-base64'
+  import utilApi from './common/utils';
   export default {
     name: 'app'
   }
