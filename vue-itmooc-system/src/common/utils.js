@@ -31,6 +31,24 @@ export default {
       return activeUser.jwt
     }
   },
+  //解析jwt令牌，获取用户信息
+  getUserInfoFromJwt : function (jwt) {
+    if(!jwt){
+      return ;
+    }
+    var jwtDecodeVal = jwtDecode(jwt);
+    if (!jwtDecodeVal) {
+      return ;
+    }
+    let activeUser={}
+    //console.log(jwtDecodeVal)
+    activeUser.username = jwtDecodeVal.name || '';
+    activeUser.userid = jwtDecodeVal.id || '';
+    activeUser.authorities = jwtDecodeVal.authorities || '';
+    activeUser.uid = jwtDecodeVal.jti || '';
+    activeUser.jwt = jwt;
+    return activeUser;
+  },
   checkActiveUser:function(){
     // var jwt = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjEyNjMzNjUsInVzZXJfbmFtZSI6IjEyMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iLCJnZXRSZXNvdXJjZSJdLCJqdGkiOiI3NmIxOTgzMi01MDk3LTQyMDMtYjhjMS1kOGI1N2ZmMmZhOTAiLCJjbGllbnRfaWQiOiJtYW5hZ2VyIiwic2NvcGUiOlsibWFuYWdlciJdfQ.MzycLCC9cR-905ilrd1bWH52nqto4MDYbbMSXgcRdVkUGlv2A2JrlIvbvxNc2BVug1L59AV_7hUa_SHZQgrOdHnyoMdcu5KoHHXsJi1O5wUXkuahc-K3KoBhwkyWY9O-DvwZhrmzsYN2gb_3qmU2xbHu6U1pwwscXGHjbKJDoWGdrmMkRc1cpxuqvH-0eusR1GLQ4gTBSyVNW4XVO7jMt9ATBubos7GhtbAMXnCQVO9pui2zvPvKVxlvwMjJowjdCc_5hvXjyUvWgbU1qUrdtXeskeT-HoVUtsol6OnFHnq7o9bIin1493ZwjDck_0R1R8mkGRGKylQtZdzESeQpYA';
     var jwt_base64 = this.getCookie("juid");
@@ -116,7 +134,7 @@ export default {
     exp.setTime(exp.getTime() - 1);
     document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
   },
-  setSession: function (key, value) {
+  setUserSession: function (key, value) {
     return sessionStorage.setItem(key, value);
   },
   getUserSession: function (key) {

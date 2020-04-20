@@ -16,4 +16,9 @@ export const sys_deleteFile = params => {
   return http.requestPost(apiUrl+'/filesystem/delete',params)
 }
 
+/*获取jwt令牌*/
+export const getjwt= () => {
+  return http.requestQuickGet('/openapi/auth/userjwt')
+}
+
 
