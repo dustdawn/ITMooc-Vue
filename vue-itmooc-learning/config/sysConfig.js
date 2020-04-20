@@ -5,7 +5,8 @@ var sysConfig = {
     backStaticURL: 'http://www.itmooc.com/static',
     imgUrl:'http://img.itmooc.com/',
     videoUrl:'http://video.itmooc.com/video/',
-    openAuthenticate:false,
+  // 开启认证
+    openAuthenticate:true,
     openAuthorize:false
 }
 

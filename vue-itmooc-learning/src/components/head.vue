@@ -13,11 +13,7 @@
           </div>
 
           <div class="sign-in">
-            <!-- 未登录 -->
-            <!-- <a href="#">登录 </a> <span> | </span> <a href="#"> 注册</a>-->
-            <!-- 登录 -->
-            <!-- <a href="#" class="personal"><span class="personalIco"></span>消息</a>
-             <a href="#" class="personal">购物车</a>-->
+
             <router-link :to="{path: '/'}">我的学习</router-link>
             <a href="javascript:;" @click="logout" v-if="logined == true">退出</a>
             <a href="javascript:;" @click="showlogin" v-if="logined == false">登陆|注册</a>
@@ -65,17 +61,17 @@
       },
       refresh_user:function(){
         let activeUser= utilApi.getActiveUser();
-
         if(activeUser){
           this.logined = true
           this.user = activeUser;
+          console.log("用户已经登录")
           //console.log(this.user.username)
         }else{
           //this.showlogin()
         }
       },
       showlogin:function(){
-        this.returnUrl = window.location;
+        window.location = "http://ucenter.itmooc.com/#/login?returnUrl="+ Base64.encode(window.location)
         this.LoginFormVisible = true;
       }
     },

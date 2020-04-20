@@ -38,10 +38,8 @@ export default {
     }
     let activeUser={}
     //console.log(jwtDecodeVal)
-    activeUser.utype = jwtDecodeVal.utype || '';
     activeUser.username = jwtDecodeVal.name || '';
-    activeUser.userpic = jwtDecodeVal.userpic || '';
-    activeUser.userid = jwtDecodeVal.userid || '';
+    activeUser.userid = jwtDecodeVal.id || '';
     activeUser.authorities = jwtDecodeVal.authorities || '';
     activeUser.uid = jwtDecodeVal.jti || '';
     activeUser.jwt = jwt;
