@@ -114,7 +114,7 @@ export default {
       if(activeUser){
         this.logined = true
         this.user = activeUser;
-        console.log("this。user", this.user)
+        console.log("this.user", this.user)
       }
     },
     funcApi() {
