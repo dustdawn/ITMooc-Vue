@@ -78,6 +78,7 @@
       save () {
         //修改课程
         this.$refs.courseForm.validate((valid) => {
+          console.log(this.categoryActive)
           if (valid) {
             this.$confirm('确认提交吗？', '提示', {}).then(() => {
               this.editLoading = true;

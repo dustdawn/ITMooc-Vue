@@ -88,3 +88,14 @@ export const findCourseView = courseId => {
 export const savemedia = teachplanMedia => {
   return http.requestPost(apiUrl+'/course/savemedia',teachplanMedia);
 }
+
+/*查询教师信息*/
+export const getTeacherInfo = id => {
+  return http.requestGet(apiUrl+'/course/teacher/'+ id);
+}
+
+/*查询组织信息*/
+export const getOfficeInfo = officeId => {
+  return http.requestGet(apiUrl+'/ucenter/office/get/'+ officeId);
+}
+

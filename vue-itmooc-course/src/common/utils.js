@@ -41,12 +41,15 @@ export default {
       return ;
     }
     let activeUser={}
-    console.log(jwtDecodeVal)
+
     activeUser.username = jwtDecodeVal.name || '';
     activeUser.userId = jwtDecodeVal.id || '';
     activeUser.authorities = jwtDecodeVal.authorities || '';
     activeUser.uid = jwtDecodeVal.jti || '';
     activeUser.jwt = jwt;
+
+    activeUser.officeId = jwtDecodeVal.officeId ||'';
+
     return activeUser;
   },
   checkActiveUser:function(){
@@ -83,7 +86,7 @@ export default {
       if (!authorities) {
         Message.error('对不起您没有此操作权限！');
         //跳转到统一授权失败页面
-        window.location = "http://ucenter.xuecheng.com/#/denied?returnUrl="+Base64.encode(window.location)
+        window.location = "http://ucenter.itmooc.com/#/denied?returnUrl="+Base64.encode(window.location)
 /*        router.push({
           path: '/login'
         })*/
@@ -95,7 +98,7 @@ export default {
       if (!ret1) {
         Message.error('对不起您没有此操作权限！');
         //跳转到统一授权失败页面
-        window.location = "http://ucenter.xuecheng.com/#/denied?returnUrl="+Base64.encode(window.location)
+        window.location = "http://ucenter.itmooc.com/#/denied?returnUrl="+Base64.encode(window.location)
         /*router.push({
           path: '/login'
         })*/

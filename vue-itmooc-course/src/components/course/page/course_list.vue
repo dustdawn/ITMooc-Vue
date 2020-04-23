@@ -7,10 +7,10 @@
 
     </el-breadcrumb>
 
-    <section>
-      <el-row >
+    <section style="height: 520px">
+      <el-row>
         <!--新增课程-->
-        <el-col :span="8"  :offset=2 >
+        <el-col :span="8" :offset=2 >
           <el-card :body-style="{ padding: '10px' }">
             <img src="/static/images/add.png" class="image" height="150px">
             <div style="padding: 10px;">
@@ -25,7 +25,7 @@
           </el-card>
         </el-col>
 
-        <el-col :span="8" v-for="(course, index) in courses" :key="course.id" :offset="index > 0 ? 2 : 2">
+        <el-col :span="8" v-for="(course, index) in course1" :key="course.id" :offset="index > 0 ? 2 : 2">
           <el-card :body-style="{ padding: '10px' }">
             <img :src="course.pic!=null?imgUrl+course.pic:'/static/images/none.png'" class="image" height="150px">
             <div style="padding: 10px;">
@@ -38,15 +38,34 @@
           </el-card>
         </el-col>
 
-        <!--分页-->
-        <el-col :span="24" class="toolbar">
-          <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="size"
-                         :total="total" :current-page="page"
-                         style="float:right;">
-          </el-pagination>
-        </el-col>
       </el-row>
+      <el-row>
+
+        <el-col :span="8" v-for="(course, index) in course2" :key="course.id" :offset="index > 0 ? 2 : 2">
+          <el-card :body-style="{ padding: '10px' }">
+            <img :src="course.pic!=null?imgUrl+course.pic:'/static/images/none.png'" class="image" height="150px">
+            <div style="padding: 10px;">
+              <span>{{course.name}}</span>
+              <div class="bottom clearfix">
+                <time class="time"></time>
+                <el-button type="text" class="button" @click="handleManage(course.id)">管理课程</el-button>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+
+      </el-row>
+
+
     </section>
+
+    <!--分页-->
+    <el-col :span="24" class="toolbar">
+      <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="size"
+                     :total="total" :current-page="page"
+                     style="float:right;">
+      </el-pagination>
+    </el-col>
   </div>
 
 
@@ -55,14 +74,18 @@
 
 <script>
   import * as courseApi from '../api/course';
+  import utilApi from '../../../common/utils'
   let sysConfig = require('@/../config/sysConfig')
   export default {
     data() {
       return {
+        user: {},
         page:1,
         size:7,
         total: 0,
         courses: [],
+        course1:[],
+        course2:[],
         sels: [],//列表选中列
         imgUrl:sysConfig.imgUrl
       }
@@ -73,14 +96,30 @@
         console.log("当前页为：" + val);
         this.page = val;
         this.getCourse();
+        this.course1 = []
+        this.course2 = []
       },
       //获取课程列表
       getCourse() {
-        courseApi.findCourseList(this.page,this.size,{}).then((res) => {
+        let params = {
+          officeId: this.user.officeId
+        }
+        console.log(this.user)
+        courseApi.findCourseList(this.page,this.size,params).then((res) => {
           console.log(res);
           if(res.success){
             this.total = res.queryResult.total;
             this.courses = res.queryResult.list;
+            for (let i = 0; i < this.courses.length; i++) {
+                if (i<3) {
+                  this.course1.push(this.courses[i])
+                }else {
+                  this.course2.push(this.courses[i])
+                }
+            }
+            console.log(this.course1)
+            console.log(this.course2)
+
           }
 
         });
@@ -92,7 +131,13 @@
 
     },
     created(){
+      let activeUser= utilApi.getActiveUser();
 
+      if(activeUser){
+        this.logined = true
+        this.user = activeUser;
+        //console.log(this.user)
+      }
 
     },
     mounted() {
@@ -104,7 +149,8 @@
 
 <style lang="less" scoped>
   .el-col-8{
-    width:20%
+    width:20%;
+    padding-bottom: 20px;
   }
   .el-col-offset-2{
     margin-left:2%
@@ -138,5 +184,7 @@
   .clearfix:after {
     clear: both
   }
-
+  .toolbar {
+    bottom: 0;
+  }
 </style>

@@ -18,9 +18,9 @@
         </el-form-item>
         <el-form-item label="课程分类" prop="categoryActive">
           <el-cascader
-            expand-trigger="hover"
-            :options="categoryList"
             v-model="categoryActive"
+            :options="categoryList"
+            :clearable="true"
             :props="props">
           </el-cascader>
         </el-form-item>
@@ -48,15 +48,18 @@
 
   import * as courseApi from '../api/course';
   import * as systemApi from '../../../base/api/system';
+  import utilApi from '../../../common/utils'
   export default {
 
     data() {
       return {
+        user:[],
         gradeList:[],
         props: {
           value: 'id',
-          label:'name',
-          children:'children'
+          label:'label',
+          children:'children',
+          expandTrigger: 'hover'
         },
         categoryList: [],
         categoryActive:[],
@@ -67,15 +70,17 @@
           grade:'',
           mt:'',
           st:'',
-          description: ''
+          description: '',
+          officeId:'',
+          userId:''
         },
         courseRules: {
           name: [
             {required: true, message: '请输入课程名称', trigger: 'blur'}
           ],
-          /*categoryActive: [
-            {required: true, message: '请选择课程分类', trigger: 'blur'}
-          ],*/
+          categoryActive: [
+            {required: false, message: '请选择课程分类', trigger: 'blur'}
+          ],
           grade: [
             {required: true, message: '请选择课程等级', trigger: 'blur'}
           ]
@@ -89,12 +94,17 @@
       save () {
         //处理课程分类
         // 选择课程分类存储到categoryActive
-        console.log(this.categoryActive)
-        this.courseForm.mt=  this.categoryActive[0]//大分类
-        this.courseForm.st=  this.categoryActive[1]//小分类
+        console.log("categoryActive",this.categoryActive)
+
         this.$refs.cForm.validate(valid =>{
           console.log(valid)
           if (valid) {
+            this.courseForm.officeId = this.user.officeId;
+            this.courseForm.userId = this.user.userId;
+            console.log("course" ,this.courseForm)
+
+            this.courseForm.mt=  this.categoryActive[0]//大分类
+            this.courseForm.st=  this.categoryActive[1]//小分类
             courseApi.addCourseBase(this.courseForm).then(res=>{
               if(res.success){
                 this.$message.success("提交成功")
@@ -108,30 +118,34 @@
           }
         })
 
-      }
+      },
+      refresh_user:function(){
+        let activeUser= utilApi.getActiveUser();
+
+        if(activeUser){
+          this.logined = true
+          this.user = activeUser;
+        }
+      },
     },
     created(){
-
+      this.refresh_user()
     },
     mounted(){
       // 查询课程分类
       courseApi.category_findlist().then(res=>{
-        console.log(res);
+        console.log("课程分类",res);
         this.categoryList = res.children;
-
-
       })
 
       //查询数据字典
       //查询课程等级
       systemApi.sys_getDictionary("200").then(res=>{
         this.gradeList = res.dvalue;
+        console.log("课程等级",res)
       })
-      //查询学习模式
-      systemApi.sys_getDictionary("201").then(res=>{
 
-        this.studymodelList = res.dvalue;
-      })
+
 
     }
   }

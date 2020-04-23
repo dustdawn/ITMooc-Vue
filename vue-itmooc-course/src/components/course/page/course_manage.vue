@@ -17,7 +17,7 @@
         text-color="#545c64"
         active-text-color="#000000"
        @select="handleSelect">
-          <el-menu-item index="summary">课程首页</el-menu-item>
+          <el-menu-item index="summary">组织信息</el-menu-item>
           <el-menu-item index="baseinfo">基本信息</el-menu-item>
           <el-menu-item index="picture">课程图片</el-menu-item>
           <el-menu-item index="plan">课程计划</el-menu-item>

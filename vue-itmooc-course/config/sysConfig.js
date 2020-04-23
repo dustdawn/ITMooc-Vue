@@ -7,7 +7,7 @@ var sysConfig = {
     pubUrl:'http://www.itmooc.com/course/detail/',
   //开启认证
     openAuthenticate:true,
-    openAuthorize:false
+    openAuthorize:true
 }
 
 module.exports = sysConfig
