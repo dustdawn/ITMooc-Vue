@@ -59,7 +59,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-9 list-row-left">
+        <div class="col-md-11 list-row-left">
           <div class="list-cont-left">
             <div class="tit">
               <ul class="nav nav-tabs ">
@@ -105,12 +105,12 @@
             </el-pagination>
           </div>
         </div>
-        <div class="col-md-3 list-row-rit">
+        <!--<div class="col-md-3 list-row-rit">
           <div class="list-cont-right">
 
 
           </div>
-        </div>
+        </div>-->
       </div>
 
     </div>
@@ -136,7 +136,7 @@
           imgUrl: config.imgUrl,
           total: 0,//总记录数
           page: 1,//页码
-          page_size: 2//每页显示个数
+          page_size: 4//每页显示个数
         }
       },
       head() {
@@ -150,7 +150,8 @@
           link: [
             {rel: 'stylesheet', href: '/static/plugins/normalize-css/normalize.css'},
             {rel: 'stylesheet', href: '/static/plugins/bootstrap/dist/css/bootstrap.css'},
-            {rel: 'stylesheet', href: '/static/css/page-learing-list.css'}
+            {rel: 'stylesheet', href: '/static/css/page-learing-list.css'},
+            {rel: 'icon', href: '/img/itmooc.ico'}
             ]
         }
       },
@@ -184,8 +185,8 @@
           page = Number.parseInt(page)
         }
         //查询课程列表
-        let course_data = await courseApi.search_course(page,2,route.query);
-        // console.log("course_data is ", course_data)
+        let course_data = await courseApi.search_course(page,4,route.query);
+        console.log("course_data is ", course_data)
 
         //查询分类信息
         let category_data = await courseApi.course_category()

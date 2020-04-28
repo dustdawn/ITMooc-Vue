@@ -13,13 +13,13 @@
   "dependencies": {
     "axios": "^0.17.1",
     "Base64": "^1.0.1",
+    "js-base64": "^2.4.3",
     "element-ui": "^2.0.10",
     "jwt-decode": "^2.2.0",
     "md5": "^2.2.1",
     "nuxt": "^2.0.0"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "config": {
     "nuxt": {
       "host": "127.0.0.1",

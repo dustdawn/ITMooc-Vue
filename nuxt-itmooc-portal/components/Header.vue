@@ -72,25 +72,25 @@
         this.$confirm('确认退出吗?', '提示', {
         }).then(() => {
           //跳转到统一登陆
-          window.location = "http://ucenter.xuecheng.com/#/logout"
+          window.location = "http://ucenter.itmooc.com/#/logout"
         }).catch(() => {
 
         });
       },
       refresh_user:function(){
-        let activeUser= utilApi.checkActiveUser();
+        let activeUser= utilApi.getActiveUser();
 
         if(activeUser){
           this.logined = true
           this.user = activeUser;
-          //console.log(this.user.username)
+          console.log("用户",this.user)
         }else{
-          //this.showlogin()
+          // this.showlogin()
         }
       },
       showlogin:function(){
-        this.returnUrl = window.location;
-        this.LoginFormVisible = true;
+        window.location = "http://ucenter.itmooc.com/#/login";
+
       }
     },
     mounted() {

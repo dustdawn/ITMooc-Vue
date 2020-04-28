@@ -12,12 +12,15 @@ function padding(s, len) {
 
 export default {
   getActiveUser:function(){
-    let activeUserStr = this.getSession("activeUser");
-    return JSON.parse(activeUserStr);
+    var jwt_base64 = this.getCookie("uid");
+    if (jwt_base64) {
+      let activeUserStr = this.getSession("activeUser");
+      return JSON.parse(activeUserStr);
+    }
   },
   checkActiveUser:function(){
     // var jwt = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjEyNjMzNjUsInVzZXJfbmFtZSI6IjEyMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iLCJnZXRSZXNvdXJjZSJdLCJqdGkiOiI3NmIxOTgzMi01MDk3LTQyMDMtYjhjMS1kOGI1N2ZmMmZhOTAiLCJjbGllbnRfaWQiOiJtYW5hZ2VyIiwic2NvcGUiOlsibWFuYWdlciJdfQ.MzycLCC9cR-905ilrd1bWH52nqto4MDYbbMSXgcRdVkUGlv2A2JrlIvbvxNc2BVug1L59AV_7hUa_SHZQgrOdHnyoMdcu5KoHHXsJi1O5wUXkuahc-K3KoBhwkyWY9O-DvwZhrmzsYN2gb_3qmU2xbHu6U1pwwscXGHjbKJDoWGdrmMkRc1cpxuqvH-0eusR1GLQ4gTBSyVNW4XVO7jMt9ATBubos7GhtbAMXnCQVO9pui2zvPvKVxlvwMjJowjdCc_5hvXjyUvWgbU1qUrdtXeskeT-HoVUtsol6OnFHnq7o9bIin1493ZwjDck_0R1R8mkGRGKylQtZdzESeQpYA';
-    var jwt_base64 = this.getCookie("juid");
+    var jwt_base64 = this.getCookie("uid");
     if (jwt_base64 ) {
       let jwt = Base64.atob(jwt_base64)
       var jwtDecodeVal = jwtDecode(jwt);
@@ -27,13 +30,11 @@ export default {
 
 //      user = JSON.parse(user);
         let activeUser={}
-        //console.log(jwtDecodeVal)
-        activeUser.utype = jwtDecodeVal.utype || '';
+        console.log(jwtDecodeVal)
         activeUser.username = jwtDecodeVal.user_name || '';
-        activeUser.userpic = jwtDecodeVal.userpic || '';
-        activeUser.userid = jwtDecodeVal.userid || '';
+        activeUser.userid = jwtDecodeVal.userId || '';
         activeUser.authorities = jwtDecodeVal.authorities || '';
-        activeUser.menus = jwtDecodeVal.menus || '';
+        activeUser.officeId = jwtDecodeVal.officeId || '';
 
         this.setSession("activeUser",JSON.stringify(activeUser))
         return this.getSession("activeUser")
