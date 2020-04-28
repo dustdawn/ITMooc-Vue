@@ -1,5 +1,5 @@
 import http from './public'
-
+import querystring from 'querystring'
 /*数据字典 */
 export const sys_getDictionary= dType => {
   return http.requestQuickGet('/sys/dictionary/get/'+dType)
@@ -15,8 +15,10 @@ export const sys_deleteFile = params => {
   return http.requestPost('/filesystem/delete',params)
 }
 /*课程查询*/
-export const course_findByIds = ids => {
-  return http.requestGet('/openapi/search/course/getbase/'+ids);
+export const course_findByIds = (page,size,params) => {
+  // return http.requestGet('/openapi/search/course/getbase/'+ids);
+  let querys = querystring.stringify(params)
+  return http.requestGet('/api/course/coursebase/list/'+page+'/'+size + '/?' + querys);
 }
 export const course_view = id => {
   // return http.requestGet('/openapi/portalview/course/get/'+id);

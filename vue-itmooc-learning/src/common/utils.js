@@ -37,12 +37,13 @@ export default {
       return ;
     }
     let activeUser={}
-    //console.log(jwtDecodeVal)
+    console.log("jwtDecodeVal",jwtDecodeVal)
     activeUser.username = jwtDecodeVal.name || '';
     activeUser.userid = jwtDecodeVal.id || '';
     activeUser.authorities = jwtDecodeVal.authorities || '';
     activeUser.uid = jwtDecodeVal.jti || '';
     activeUser.jwt = jwt;
+    activeUser.officeId = jwtDecodeVal.officeId || '';
     return activeUser;
   },
   checkActiveUser:function(){

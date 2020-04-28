@@ -4,7 +4,8 @@ let apiUrl = sysConfig.xcApiUrlPre;
 import querystring from 'querystring'
 /*选课查询*/
 export const course_list = (page,size,params) => {
-  return http.requestPost(apiUrl+'/learning/choosecourse/list/'+page+'/'+size,params);
+  let querys = querystring.stringify(params)
+  return http.requestQuickGet(apiUrl+'/learning/course/list/'+page+'/'+size + '/?' + querys);
 }
 /*查询选课状态*/
 export const course_learnstatus = courseId => {
@@ -14,6 +15,9 @@ export const course_learnstatus = courseId => {
 export const get_media = (courseId,chapter) => {
   return http.requestGet(apiUrl+'/learning/course/getmedia/'+courseId+'/'+chapter);
 }
+
+
+
 
 
 

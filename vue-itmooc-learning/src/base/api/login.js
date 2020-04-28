@@ -12,6 +12,19 @@ export const login = params => {
 export const logout = params => {
   return http.requestPost('/openapi/auth/userlogout');
 }
+/*注册*/
+export const logon = params => {
+  let logonRequest = qs.stringify(params);
+  console.log(logonRequest)
+  return http.requestPostForm('/openapi/auth/userlogon',logonRequest);
+}
+
+/*修改密码*/
+export const change_password = (params) => {
+
+  params = qs.stringify(params);
+  return http.requestPostForm('/api/ucenter/user/changepw' + '?',params);
+}
 
 
 

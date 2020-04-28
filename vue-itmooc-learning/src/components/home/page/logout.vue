@@ -23,7 +23,7 @@ export default {
 	},
   data() {
     return {
-      logoutsuccess:false
+      logoutsuccess:true
     }
   },
   methods: {
@@ -38,10 +38,7 @@ export default {
         }else{
           this.logoutsuccess = false
         }
-      },
-      (res) => {
-        this.logoutsuccess = false
-      });
+      })
   },
   mounted() {
 

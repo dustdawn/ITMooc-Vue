@@ -7,6 +7,7 @@ import learning_video from '@/components/course/page/learning_video.vue'
 
 import login from '@/components/home/page/loginpage.vue'
 import logout from '@/components/home/page/logout.vue'
+import denied from '@/components/home/page/denied.vue'
 
 Vue.use(Router)
 
@@ -31,6 +32,12 @@ export default new Router({
       path: '/logout',
       component: logout,
       name: '退出页面',
+      hidden: true
+    },
+    {
+      path: '/denied',
+      component: denied,
+      name: '未授权',
       hidden: true
     },
     {
