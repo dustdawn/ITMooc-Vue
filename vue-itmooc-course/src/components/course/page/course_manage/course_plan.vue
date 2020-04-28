@@ -178,6 +178,7 @@
         courseApi.savemedia(teachplanMedia).then(res=>{
           if(res.success){
             this.$message.success("选择视频成功")
+            this.mediaFormVisible = false;
             //查询课程计划
             this.findTeachplan()
           }else{

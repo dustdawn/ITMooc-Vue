@@ -127,7 +127,7 @@ router.afterEach((to, from, next) => {
       })
       console.log("ret1",ret1)
       if (!ret1) {
-        this.$message.error('对不起您没有此操作权限！');
+        Message.error('对不起您没有此操作权限！');
         //跳转到统一授权失败页面
         window.location = "http://ucenter.itmooc.com/#/denied?returnUrl="+Base64.encode(window.location)
       }

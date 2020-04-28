@@ -23,8 +23,6 @@
           <el-menu-item index="plan">课程计划</el-menu-item>
           <el-menu-item index="teacher">教师信息</el-menu-item>
           <el-menu-item index="pub">课程发布</el-menu-item>
-
-
       </el-menu>
       <router-view class="main"></router-view>
     </el-card>

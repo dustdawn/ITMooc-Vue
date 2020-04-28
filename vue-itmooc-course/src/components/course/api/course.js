@@ -30,6 +30,10 @@ export const updateCourseBase = (id,params) => {
   return http.requestPut(apiUrl+'/course/coursebase/update/' +  id, params)
 }
 
+/*删除课程*/
+export const delCourseBase = (id) => {
+  return http.requestDelete(apiUrl+'/course/coursebase/delete/' +  id)
+}
 
 /*查询课程计划*/
 export const findTeachplanList = courseid => {

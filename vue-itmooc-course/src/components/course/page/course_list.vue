@@ -31,7 +31,7 @@
             <div style="padding: 10px;">
               <span>{{course.name}}</span>
               <div class="bottom clearfix">
-                <time class="time"></time>
+                <time class="time"><a href="javascript:;" class="time" @click="deleteCourse(course.id)">删除课程</a></time>
                 <el-button type="text" class="button" @click="handleManage(course.id)">管理课程</el-button>
               </div>
             </div>
@@ -47,7 +47,7 @@
             <div style="padding: 10px;">
               <span>{{course.name}}</span>
               <div class="bottom clearfix">
-                <time class="time"></time>
+                <time class="time"><a href="javascript:;" class="time" @click="deleteCourse(course.id)">删除课程</a></time>
                 <el-button type="text" class="button" @click="handleManage(course.id)">管理课程</el-button>
               </div>
             </div>
@@ -127,6 +127,37 @@
       handleManage: function (id) {
         //console.log(id)
         this.$router.push({ path: '/course/manage/'+id})
+      },
+
+      async deleteCourse(id) {
+        // 弹框询问用户是否删除数据
+        const confirmResult = await this.$confirm(
+          '此操作将永久删除该课程, 是否继续?',
+          '提示',
+          {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }
+        ).catch(err => err)
+
+        // 如果用户确认删除，则返回值为字符串 confirm
+        // 如果用户取消了删除，则返回值为字符串 cancel
+        // console.log(confirmResult)
+        if (confirmResult !== 'confirm') {
+          return this.$message.info('已取消删除')
+        }
+
+        courseApi.delCourseBase(id).then(res => {
+          if (!res.success) {
+            return
+            // return this.$message.error('删除课程失败！' + res.message)
+          }
+          this.$message.success('删除课程成功！')
+          this.course1 = []
+          this.course2 = []
+          this.getCourse()
+        })
       }
 
     },
@@ -158,6 +189,7 @@
   .time {
     font-size: 13px;
     color: #999;
+    text-decoration:none;
   }
 
   .bottom {
