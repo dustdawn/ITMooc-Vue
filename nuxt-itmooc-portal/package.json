@@ -11,7 +11,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.1",
     "Base64": "^1.0.1",
     "js-base64": "^2.4.3",
     "element-ui": "^2.0.10",
