@@ -380,9 +380,9 @@
 
             userApi.user_delete(id).then(res => {
               if (!res.success) {
-                return this.$message.error('删除用户成功！' + res.message)
+                return this.$message.error('删除用户失败！' + res.message)
               }
-              this.$message.success('删除用户成功！')
+              this.$message.success('删除用户失败！')
               this.getUserList()
             })
           },

@@ -4,7 +4,7 @@ var sysConfig = {
     imgUrl:'http://img.itmooc.com/',
     videoUrl:'http://video.itmooc.com/',
     openAuthenticate:true,
-    openAuthorize:false
+    openAuthorize:true
 }
 
 module.exports = sysConfig

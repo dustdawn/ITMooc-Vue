@@ -106,6 +106,39 @@ axios.interceptors.response.use(data => {
   return data
 })
 
+//授权
+router.afterEach((to, from, next) => {
+  if(openAuthorize){
+    let activeUser
+    try{
+      activeUser = utilApi.getActiveUser();
+    }catch(e){
+      //alert(e)
+    }
+    if(activeUser) {
+      //权限校验
+      console.log(activeUser)
+      let authorities = activeUser.authorities;
+      if (!authorities) {
+        Message.error('对不起您没有此操作权限！');
+        //跳转到统一授权失败页面
+        window.location = "http://ucenter.itmooc.com/#/denied?returnUrl="+Base64.encode(window.location)
+      }
+      //console.log(authorities)
+      var ret1 = authorities.find((value, index, arr) => {
+        return value == "sysmanager";
+      })
+      console.log("ret1",ret1)
+      if (!ret1) {
+        Message.error('对不起您没有此操作权限！');
+        //跳转到统一授权失败页面
+        window.location = "http://ucenter.itmooc.com/#/denied?returnUrl="+Base64.encode(window.location)
+      }
+    }
+  }
+
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -140,7 +140,12 @@ export default {
           id: 103,
           authName: 'CMS',
           children: [
-            {id: 10031, authName: '页面管理', path: 'cms/page/list'}]
+            {id: 10031, authName: '页面管理', path: 'cms/page/list'},
+            {id: 10032, authName: '轮播图管理', path: 'cms/page/banner'},
+            {id: 10033, authName: '热门课程管理', path: 'cms/page/hot'},
+            {id: 10034, authName: 'Java课程管理', path: 'cms/page/java'},
+            {id: 10035, authName: 'C课程管理', path: 'cms/page/c'}
+          ]
         }
       ]
     },

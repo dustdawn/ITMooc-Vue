@@ -249,7 +249,7 @@
 
           roleApi.role_delete(id).then(res => {
             if (!res.success) {
-              return this.$message.error('删除角色成功！' + res.message)
+              return this.$message.error('删除角色失败！' + res.message)
             }
             this.$message.success('删除角色成功！')
             this.getRoleList()

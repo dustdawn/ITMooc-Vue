@@ -22,7 +22,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="选择模版" prop="templateId">
-        <el-select v-model="pageForm.templateId" placeholder="请选择">
+        <el-select v-model="pageForm.templateId" placeholder="请选择" @change="templateChange(pageForm.templateId)">
           <el-option
             v-for="item in templateList"
             :key="item.templateId"
@@ -146,6 +146,29 @@
             });
           }
         });
+      },
+      templateChange(id) {
+        if (id == '5ea69b2bb20fe673b60463c0') {
+          this.pageForm.pageName = 'index_banner.html';
+          this.pageForm.pageWebPath = '/banner/';
+          this.pageForm.pagePhysicalPath = '/banner/';
+          this.pageForm.dataUrl = 'http://localhost:31100/cms/config/getModel/5e982b2155d6b309a9db48e4';
+        }else if (id == '5ea6b453b20fe673b604640f') {
+          this.pageForm.pageName = 'hot_course.html';
+          this.pageForm.pageWebPath = '/banner/';
+          this.pageForm.pagePhysicalPath = '/banner/';
+          this.pageForm.dataUrl = 'http://localhost:31100/cms/config/getModel/5ea7898eb20fe673b6046419';
+        }else if (id == '5ea7a8f8b20fe673b6046445') {
+          this.pageForm.pageName = 'java_course.html';
+          this.pageForm.pageWebPath = '/banner/';
+          this.pageForm.pagePhysicalPath = '/banner/';
+          this.pageForm.dataUrl = 'http://localhost:31100/cms/config/getModel/5ea78d23b20fe673b604641e';
+        }else if (id == '5ea7a8ffb20fe673b6046446') {
+          this.pageForm.pageName = 'c_course.html';
+          this.pageForm.pageWebPath = '/banner/';
+          this.pageForm.pagePhysicalPath = '/banner/';
+          this.pageForm.dataUrl = 'http://localhost:31100/cms/config/getModel/5ea78d2fb20fe673b604641f';
+        }
       }
     },
     created: function () {

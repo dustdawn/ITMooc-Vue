@@ -48,3 +48,9 @@ export const page_generateHtml= (id, params) => {
 export const page_postPage= id => {
   return http.requestPost(apiUrl+'/cms/page/postPage/'+id)
 }
+
+
+export const get_model= id => {
+  return http.requestGet(apiUrl+'/cms/config/getModel/'+id)
+}
+
